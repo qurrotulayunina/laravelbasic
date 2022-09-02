@@ -7,6 +7,7 @@
     <title>Data Posts - SantriKoding.com</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
 
@@ -15,6 +16,8 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        <a href='/'><i class="fa fa-home fa-2x"></i></a>
+                        <h4 style='text-align: center'>TUGAS 1</h4>
                         <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
@@ -50,7 +53,12 @@
                             </tbody>
                           </table>  
                           {{ $posts->links() }}
+                        <a href='/books' style='float: right'>
+                            <i class="fa fa-arrow-circle-right fa-2x"></i>
+                        </a>
                     </div>
+                    
+
                 </div>
             </div>
         </div>

@@ -7,6 +7,7 @@
     <title>Data Books</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
 
@@ -15,6 +16,8 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        <a href='/'><i class="fa fa-home fa-2x"></i></a>
+                        <h4 style='text-align: center'>TUGAS 2</h4>
                         <a href="{{ route('books.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
@@ -52,6 +55,9 @@
                             </tbody>
                           </table>  
                           {{ $books->links() }}
+                          <a href='/posts' style='float: left'>
+                            <i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>
