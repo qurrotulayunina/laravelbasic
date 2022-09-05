@@ -19,6 +19,11 @@
                             @method('PUT')
 
                             <div class="form-group">
+                                <label class="font-weight-bold">SAMPUL</label>
+                                <input type="file" class="form-control" name="gambar">
+                            </div>
+
+                            <div class="form-group">
                                 <label class="font-weight-bold">JUDUL</label>
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" value="{{ old('judul', $book->judul) }}" placeholder="Masukkan Judul Buku">
                             
@@ -56,8 +61,11 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">PENERBIT</label>
-                                <input type="text" class="form-control @error('penerbit') is-invalid @enderror" name="penerbit" value="{{ old('penerbit', $book->penerbit) }}" placeholder="Masukkan Penerbit">
-                            
+                                <select class="form-control @error('penerbit') is-invalid @enderror" name="penerbit" value="{{ old('penerbit', $book->penerbit) }}" placeholder="Masukkan Penerbit">
+                                    <option value="Jogja">Jogja</option>
+                                    <option value="Solopos">Solopos</option>
+                                    <option value="Mediatama">Mediatama</option>
+                                </select>
                                 <!-- error message untuk penerbit -->
                                 @error('penerbit')
                                     <div class="alert alert-danger mt-2">
@@ -68,7 +76,7 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">TAHUN TERBIT</label>
-                                <input type="text" class="form-control @error('thn_terbit') is-invalid @enderror" name="thn_terbit" value="{{ old('thn_terbit', $book->thn_terbit) }}" placeholder="Masukkan Tahun Terbit">
+                                <input type="date" class="form-control @error('thn_terbit') is-invalid @enderror" name="thn_terbit" value="{{ old('thn_terbit', $book->thn_terbit) }}" placeholder="Masukkan Tahun Terbit">
                             
                                 <!-- error message untuk tahun terbit -->
                                 @error('thn_terbit')

@@ -22,6 +22,8 @@
                         <table class="table table-bordered">
                             <thead>
                               <tr>
+                                
+                                <th scope="col">SAMPUL</th>
                                 <th scope="col">JUDUL</th>
                                 <th scope="col">HARGA</th>
                                 <th scope="col">PENULIS</th>
@@ -33,6 +35,9 @@
                             <tbody>
                               @forelse ($books as $book)
                                 <tr>
+                                    <td class="text-center">
+                                        <img src="{{ Storage::url('public/books/').$book->gambar }}" class="rounded" style="width: 150px">
+                                    </td>
                                     <td>{{ $book->judul }}</td>
                                     <td>Rp. {{ number_format($book->harga,0,',','.')}}</td>
                                     <td>{{ $book->penulis }}</td>

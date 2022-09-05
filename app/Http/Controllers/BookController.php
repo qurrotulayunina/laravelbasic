@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -25,6 +26,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'gambar'        => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul'         => 'required|min:1',
             'harga'         => 'required|min:2',
             'penulis'       => 'required|min:5',
@@ -34,6 +36,7 @@ class BookController extends Controller
 
         //create book
         Book::create([
+            'gambar'        => $request->gambar,
             'judul'         => $request->judul,
             'harga'         => $request->harga,
             'penulis'       => $request->penulis,
@@ -53,6 +56,7 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $this->validate($request, [
+            'gambar'        => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'judul'         => 'required|min:1',
             'harga'         => 'required|min:2',
             'penulis'       => 'required|min:5',
@@ -60,13 +64,37 @@ class BookController extends Controller
             'thn_terbit'    => 'required|min:2'
         ]);
 
-        $book->update([
+        //check if image is uploaded
+        if ($request->hasFile('gambar')) {
+
+            //upload new image
+            $gambar = $request->file('gambar');
+            $gambar->storeAs('public/books', $gambar->hashName());
+
+            //delete old image
+            Storage::delete('public/books/'.$book->gambar);
+
+            //update post with new image
+            $book->update([
+                'gambar'        => $gambar->hashName(),
+                'judul'         => $request->judul,
+                'harga'         => $request->harga,
+                'penulis'       => $request->penulis,
+                'penerbit'      => $request->penerbit,
+                'thn_terbit'    => $request->thn_terbit,
+            ]);
+
+        } else {
+
+            //update post without image
+            $book->update([
             'judul'         => $request->judul,
             'harga'         => $request->harga,
             'penulis'       => $request->penulis,
             'penerbit'      => $request->penerbit,
             'thn_terbit'    => $request->thn_terbit,
-        ]);
+            ]);
+        }
 
         return redirect()->route('books.index')->with(['success' => 'Data Buku Berhasil Diubah!']);
     }

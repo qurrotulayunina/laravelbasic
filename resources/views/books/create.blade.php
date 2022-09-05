@@ -19,6 +19,18 @@
                             @csrf
 
                             <div class="form-group">
+                                <label class="font-weight-bold">SAMPUL</label>
+                                <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar">
+                            
+                                <!-- error message untuk title -->
+                                @error('gambar')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label class="font-weight-bold">JUDUL</label>
                                 <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Judul Buku">
                             
@@ -53,8 +65,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">PENERBIT</label>
-                                <input type="text" class="form-control @error('penerbit') is-invalid @enderror" name="penerbit" value="{{ old('penerbit') }}" placeholder="Masukkan Penerbit">
-                            
+                                <select class="form-control @error('penerbit') is-invalid @enderror" name="penerbit" value="{{ old('penerbit') }}" placeholder="Masukkan Penerbit">
+                                    <option value="Jogja">Jogja</option>
+                                    <option value="Solopos">Solopos</option>
+                                    <option value="Mediatama">Mediatama</option>
+                                </select>
                                 <!-- error message untuk penerbit -->
                                 @error('penerbit')
                                     <div class="alert alert-danger mt-2">
@@ -64,7 +79,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">TAHUN TERBIT</label>
-                                <input type="text" class="form-control @error('thn_terbit') is-invalid @enderror" name="thn_terbit" value="{{ old('thn_terbit') }}" placeholder="Masukkan Tahun Terbit">
+                                <input type="date" class="form-control @error('thn_terbit') is-invalid @enderror" name="thn_terbit" value="{{ old('thn_terbit') }}" placeholder="Masukkan Tahun Terbit">
                             
                                 <!-- error message untuk tahun terbit -->
                                 @error('thn_terbit')
@@ -73,18 +88,6 @@
                                     </div>
                                 @enderror
                             </div>
-
-                            {{-- <div class="form-group">
-                                <label class="font-weight-bold">KONTEN</label>
-                                <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
-                            
-                                <!-- error message untuk content -->
-                                @error('content')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div> --}}
 
                             <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
                             <button type="reset" class="btn btn-md btn-warning">RESET</button>
